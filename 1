@@ -1,0 +1,127 @@
+#-------------------------------------------------------------------------------------------------------------
+#A
+
+import re
+import pandas as pd
+
+data = pd.read_csv("https://raw.githubusercontent.com/lucasmetello/NF3-BIG-DATA/main/world_alcohol.csv")
+df = pd.DataFrame(data)
+
+agrupadoPor = df.groupby('Beverage Types')
+
+beer = agrupadoPor.get_group('Beer')
+print("Grupo de Bebidas: Beer")
+display(beer)
+print('---------------------------------------')
+
+other = agrupadoPor.get_group('Other')
+print("Grupo de Bebidas: Other")
+display(other)
+print('---------------------------------------')
+
+spirits = agrupadoPor.get_group('Spirits')
+print("Grupo de Bebidas: Spirits")
+display(spirits)
+print('---------------------------------------')
+
+wine = agrupadoPor.get_group('Wine')
+print("Grupo de Bebidas: Wine")
+display(wine)
+
+#-------------------------------------------------------------------------------------------------------------
+
+#B
+import re
+import pandas as pd
+
+data = pd.read_csv("https://raw.githubusercontent.com/lucasmetello/NF3-BIG-DATA/main/world_alcohol.csv")
+df = pd.DataFrame(data)
+
+agrupadoPor = df.groupby(['WHO region', 'Year'])
+for group, data in agrupadoPor:
+    print(f"Região: {group[0]}, Ano: {group[1]}")
+    display(data[['Beverage Types', 'Display Value', 'Country']])
+
+#-------------------------------------------------------------------------------------------------------------
+
+#C
+import re
+import pandas as pd
+
+data = pd.read_csv("https://raw.githubusercontent.com/lucasmetello/NF3-BIG-DATA/main/world_alcohol.csv")
+df = pd.DataFrame(data)
+
+
+# Contagem de ocorrência de regiões
+regionCont = df['WHO region'].value_counts()
+
+# Contagem de ocorrência de países
+countryCont = df['Country'].value_counts()
+
+# Soma da coluna de valores por bebida
+somaBeverage = df.groupby('Beverage Types')['Display Value'].sum()
+
+
+print("Contagem de ocorrência de Regiões:")
+print(regionCont)
+print('---------------------------------------')
+
+print("Contagem de ocorrência de Países:")
+print(countryCont)
+print('---------------------------------------')
+
+print("Soma da coluna de valores por Bebida:")
+print(somaBeverage)
+print()
+print("Soma Total dos valores")
+print(df['Display Value'].sum())
+
+#-------------------------------------------------------------------------------------------------------------
+#D
+import re
+import pandas as pd
+
+data = pd.read_csv("https://raw.githubusercontent.com/lucasmetello/NF3-BIG-DATA/main/world_alcohol.csv")
+df = pd.DataFrame(data)
+
+
+media = df['Display Value'].mean()
+moda = df['Display Value'].mode().values[0]
+mediana = df['Display Value'].median()
+descricao = df['Display Value'].describe()
+
+
+agrupadoPor = df.groupby('Beverage Types')['Display Value'].mean()
+agrupadoPor.plot(kind='bar', xlabel='Tipos de Bebida', ylabel='Valor', title='Valor por tipo de bebida')
+
+
+print("Análises Estatísticas dos Valores:")
+print(f"Média: {media}")
+print(f"Moda: {moda}")
+print(f"Mediana: {mediana}")
+print('---------------------------------------')
+print("Análises Estatísticas Descritiva dos valores")
+print(descricao)
+
+#-------------------------------------------------------------------------------------------------------------
+#E
+#I
+
+import re
+import pandas as pd
+
+data = pd.read_csv("https://raw.githubusercontent.com/lucasmetello/NF3-BIG-DATA/main/world_alcohol.csv")
+df = pd.DataFrame(data)
+
+print('Bebidas do ano de 1985')
+ano1985 = df.loc[df['Year'] == 1985, 'Beverage Types']
+display(ano1985)
+print('---------------------------------------')
+#II
+print('Valores acima de 4 por região')
+maisQ4 = df.loc[df['Display Value'] > 4, 'WHO region']
+display(maisQ4)
+
+#-------------------------------------------------------------------------------------------------------------
+
+    
