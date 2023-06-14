@@ -1,0 +1,218 @@
+#----------------------------------------------------------------------------------
+#A
+
+import re
+import pandas as pd
+
+data = pd.read_csv("https://raw.githubusercontent.com/lucasmetello/NF3-BIG-DATA/main/cursos-prouni.csv")
+df = pd.DataFrame(data)
+
+df['nota_integral_ampla'].fillna(0.0, inplace=True)
+df['nota_integral_cotas'].fillna(0.0, inplace=True)
+df['nota_parcial_ampla'].fillna(0.0, inplace=True)
+df['nota_parcial_cotas'].fillna(0.0, inplace=True)
+
+df
+
+#----------------------------------------------------------------------------------
+#B
+
+import re
+import pandas as pd
+
+data = pd.read_csv("https://raw.githubusercontent.com/lucasmetello/NF3-BIG-DATA/main/cursos-prouni.csv")
+df = pd.DataFrame(data)
+
+agrupadoPor = df.groupby('grau')
+
+bacha = agrupadoPor.get_group('Bacharelado')
+print("Bacharel")
+display(bacha)
+print('---------------------------------------')
+
+licen = agrupadoPor.get_group('Licenciatura')
+print("Licenciatura")
+display(licen)
+print('---------------------------------------')
+
+licen = agrupadoPor.get_group('Licenciatura')
+print("Licenciatura")
+display(licen)
+
+#----------------------------------------------------------------------------------
+#C
+
+import re
+import pandas as pd
+
+data = pd.read_csv("https://raw.githubusercontent.com/lucasmetello/NF3-BIG-DATA/main/cursos-prouni.csv")
+df = pd.DataFrame(data)
+
+agrupadoPor = df.groupby('nome')
+
+mat = agrupadoPor.get_group('Matemática')
+print("Matemática")
+display(mat)
+print('---------------------------------------')
+
+med = agrupadoPor.get_group('Medicina')
+print("Medicina")
+display(med)
+print('---------------------------------------')
+
+ped = agrupadoPor.get_group('Pedagogia')
+print("Pedagogia")
+display(ped)
+
+
+#----------------------------------------------------------------------------------
+#D
+
+import re
+import pandas as pd
+
+data = pd.read_csv("https://raw.githubusercontent.com/lucasmetello/NF3-BIG-DATA/main/cursos-prouni.csv")
+df = pd.DataFrame(data)
+
+#usei o código da 2A para remover os campos das notas que NAN
+df['nota_integral_ampla'].fillna(0.0, inplace=True)
+df['nota_integral_cotas'].fillna(0.0, inplace=True)
+df['nota_parcial_ampla'].fillna(0.0, inplace=True)
+df['nota_parcial_cotas'].fillna(0.0, inplace=True)
+
+agrupadoPor = df.groupby('cidade_busca')
+
+#Notas de Corte integral ampla
+print("Notas de Corte integral ampla")
+display (round(agrupadoPor['nota_integral_ampla'].mean()))
+print('---------------------------------------')
+print()
+
+#Notas de corte parcial ampla
+print("Notas de corte parcial ampl")
+display (round(agrupadoPor['nota_parcial_ampla'].mean()))
+print('---------------------------------------')
+print()
+
+#Notas de corte integral cotas
+print("Notas de corte integral cotas")
+display (round(agrupadoPor['nota_integral_cotas'].mean()))
+print('---------------------------------------')
+print()
+
+#Notas de corte parcial cotas
+print("Notas de corte parcial cotas")
+display (round(agrupadoPor['nota_parcial_cotas'].mean()))
+
+#----------------------------------------------------------------------------------
+#E
+
+import re
+import pandas as pd
+
+data = pd.read_csv("https://raw.githubusercontent.com/lucasmetello/NF3-BIG-DATA/main/cursos-prouni.csv")
+df = pd.DataFrame(data)
+
+agrupadoPor = df.groupby('grau')
+
+tec = agrupadoPor.get_group('Tecnológico')
+print("Tecnológicos")
+display(tec)
+
+#----------------------------------------------------------------------------------
+#F
+
+import re
+import pandas as pd
+
+data = pd.read_csv("https://raw.githubusercontent.com/lucasmetello/NF3-BIG-DATA/main/cursos-prouni.csv")
+df = pd.DataFrame(data)
+
+df = df.drop(columns=['cidade_filtro'])
+df
+
+#----------------------------------------------------------------------------------
+#G
+
+import re
+import pandas as pd
+
+
+data = pd.read_csv("https://raw.githubusercontent.com/lucasmetello/NF3-BIG-DATA/main/cursos-prouni.csv")
+df = pd.DataFrame(data)
+
+agrupadoPor = df.groupby('nome')
+
+med = agrupadoPor.get_group('Medicina')
+print("Média do valor da mensalidade dos cursos de medicina")
+mean = round(med['mensalidade'].mean())
+print("R$ {:.2f}".format(mean))
+print('---------------------------------------')
+
+#----------------------------------------------------------------------------------
+#H
+
+import re
+import pandas as pd
+
+
+
+data = pd.read_csv("https://raw.githubusercontent.com/lucasmetello/NF3-BIG-DATA/main/cursos-prouni.csv")
+df = pd.DataFrame(data)
+
+df['nota_integral_ampla'].fillna(0.0, inplace=True)
+df['nota_integral_cotas'].fillna(0.0, inplace=True)
+
+agrupadoPor = df.groupby('nome')
+
+#Notas de Corte integral ampla
+print("Notas de Corte integral ampla")
+display (round(agrupadoPor['nota_integral_ampla'].mean()))
+print('---------------------------------------')
+print()
+
+#Notas de corte integral cotas
+print("Notas de corte integral cotas")
+display (round(agrupadoPor['nota_integral_cotas'].mean()))
+
+#----------------------------------------------------------------------------------
+#I
+
+import re
+import pandas as pd
+
+
+
+data = pd.read_csv("https://raw.githubusercontent.com/lucasmetello/NF3-BIG-DATA/main/cursos-prouni.csv")
+df = pd.DataFrame(data)
+
+df['nota_integral_ampla'].fillna(0.0, inplace=True)
+
+agrupadoPor = df.groupby('grau')
+
+
+bacha = agrupadoPor.get_group('Bacharelado')
+print("Bacharel")
+display(round(bacha['bolsa_integral_ampla'].describe()))
+
+
+#----------------------------------------------------------------------------------
+#J
+
+import re
+import pandas as pd
+
+
+
+data = pd.read_csv("https://raw.githubusercontent.com/lucasmetello/NF3-BIG-DATA/main/cursos-prouni.csv")
+df = pd.DataFrame(data)
+
+df['nota_integral_cotas'].fillna(0.0, inplace=True)
+
+print(df['nota_integral_cotas'].mean())
+
+agrupadoPor = df.groupby('grau')['nota_integral_cotas'].mean()
+agrupadoPor.plot(kind='bar', xlabel='Grau', ylabel='Nota', title='Comparativo entre o grau dos cursos pelas Notas Integral de Cotas')
+
+#----------------------------------------------------------------------------------
+
